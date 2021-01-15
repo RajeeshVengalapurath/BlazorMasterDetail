@@ -2,13 +2,13 @@
 
     <EditForm Model="@Master" OnValidSubmit="HandleValidSubmit">
         <DataAnnotationsValidator />
-        <ValidationSummary />
+        <ValidationSummary id="MyValidationSummary" />
 
         @foreach (var item in Master.DetailList)
         {
             <div>
                 <InputText id="name" palceholder="Name" @bind-Value="item.MyProperty" />
-                <ValidationMessage For="@(()=>item.MyProperty)" />
+                <ValidationMessage For="@(()=>item.MyProperty)" style="color:green;" />
             </div>
         }
 
