@@ -27,13 +27,29 @@
             </div>
             <div class="my_control">
                 <label>Taxable</label>
-                <InputDate @bind-Value="Master.Taxable"></InputDate>
+                <InputCheckbox @bind-Value="Master.Taxable"></InputCheckbox>
                 <ValidationMessage For="() => Master.Taxable" />
             </div>
         </div>
         <div class="my_detail">
-            @if (nameControl != null)
-                @nameControl.Value
+            @foreach (var item in Master.DetailList)
+            {
+                <div class="my_control">
+                    <label>Quantity</label>
+                    <InputNumber @bind-Value="item.Quantity" />
+                    <ValidationMessage For="() => item.Quantity" />
+                </div>
+                <div class="my_control">
+                    <label>Rate</label>
+                    <InputNumber @bind-Value="item.Rate" />
+                    <ValidationMessage For="() => item.Rate" />
+                </div>
+                <div class="my_control">
+                    <label>Total</label>
+                    <InputNumber @bind-Value="item.Total" />
+                    <ValidationMessage For="() => item.Total" />
+                </div>
+            }
         </div>
         <div class="my_footer">
             <div class="my_control">

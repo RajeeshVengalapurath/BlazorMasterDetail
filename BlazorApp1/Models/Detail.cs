@@ -1,38 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorApp1.Models
 {
-    public class Detail
+    public class Detail : INotifyPropertyChanged
     {
         int _productId;
-        string _quantity = "0.00";
-        string _rate = "0.00";
-        string _total = "0.00";
+        decimal _quantity = 0;
+        decimal _rate = 0;
+        decimal _total = 0;
 
         public int ProductId { get { return _productId; } set { _productId = value; } }
         [GreaterThanDecimal(0)]
-        public string Quantity { get { return _quantity; }
+        public decimal Quantity { get { return _quantity; }
             set
             {
                 _quantity = value;
-                _total = (Convert.ToDecimal(_quantity) * Convert.ToDecimal(_rate)).ToString("#.00");
+                _total = _quantity * _rate;
+                OnPropertyChanged();
             } }
-        public string Rate
+        public decimal Rate
         {
             get { return _rate; }
             set
             {
                 _rate = value;
-                _total = (Convert.ToDecimal(_quantity) * Convert.ToDecimal(_rate)).ToString("#.00");
+                _total = _quantity * _rate;
+                OnPropertyChanged();
             }
         }
-        public string Total { get { return _total; } set { _total = value; } }
-        [Required]
-        public string Name { get; set; }
+        public decimal Total { get { return _total; } set { _total = value; } }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged()
+        {
+            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, null);
+        }
+
     }
 
     public class GreaterThanDecimalAttribute : ValidationAttribute

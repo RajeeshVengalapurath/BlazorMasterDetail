@@ -17,18 +17,14 @@ namespace BlazorApp1.Pages
         {
             base.OnInitialized();
 
-            Master = new Master {  
-                DetailList = new List<Detail>
-                {
-                    new Detail{ },
-                }
-            };
+            Master = new Master();
+            Master.AddNewDetailRow();
         }
 
         void HandleValidSubmit() { }
         void AddNewRow()
         {
-            Master.DetailList.Add(new Detail());
+            Master.AddNewDetailRow();
         }
     }
 }
