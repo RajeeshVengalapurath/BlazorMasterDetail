@@ -1,17 +1,121 @@
 ﻿@page "/"
+@inherits IndexBase
 
-    <EditForm Model="@Master" OnValidSubmit="HandleValidSubmit">
-        <DataAnnotationsValidator />
-        <ValidationSummary id="MyValidationSummary" />
-
-        @foreach (var item in Master.DetailList)
-        {
-            <div>
-                <InputText id="name" palceholder="Name" @bind-Value="item.MyProperty" />
-                <ValidationMessage For="@(()=>item.MyProperty)" style="color:green;" />
+<EditForm Model="Master">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="my_container">
+        <div class="my_header">
+            <div class="my_control">
+                <label>BillNo</label>
+                <InputNumber @bind-Value="Master.BillNo" />
+                <ValidationMessage For="() => Master.BillNo" />
             </div>
-        }
+            <div class="my_control">
+                <label>Date</label>
+                <InputDate @bind-Value="Master.Date"></InputDate>
+                <ValidationMessage For="() => Master.Date" />
+            </div>
+            <div class="my_control">
+                <label>Customer</label>
+                <InputSelect @bind-Value="Master.CustomerId">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </InputSelect>@Master.CustomerId
+                <ValidationMessage For="() => Master.CustomerId" />
+            </div>
+            <div class="my_control">
+                <label>Taxable</label>
+                <InputDate @bind-Value="Master.Taxable"></InputDate>
+                <ValidationMessage For="() => Master.Taxable" />
+            </div>
+        </div>
+        <div class="my_detail">
+            @if (nameControl != null)
+                @nameControl.Value
+        </div>
+        <div class="my_footer">
+            <div class="my_control">
+                <label>Remarks</label>
+                <InputText @bind-Value="Master.Remarks"></InputText>
+                <ValidationMessage For="() => Master.Remarks" />
+            </div>
+            <div class="my_control">
+                <label>Net</label>
+                <InputNumber @bind-Value="Master.Net" disabled="disabled"></InputNumber>
+                <ValidationMessage For="() => Master.Net" />
+            </div>
+            <div class="my_control">
+                <label>Discount</label>
+                <InputNumber @bind-Value="Master.Discount"></InputNumber>
+                <ValidationMessage For="() => Master.Discount" />
+            </div>
+            <div class="my_control">
+                <label>Total</label>
+                <InputNumber @bind-Value="Master.Total"></InputNumber>
+                <ValidationMessage For="() => Master.Total" />
+            </div>
+        </div>
+    </div>
+</EditForm>
 
-    </EditForm>
-        
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*<EditForm Model="@Master" OnValidSubmit="HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary id="MyValidationSummary" />
+
+            <button class="btn btn-primary" @onclick="AddNewRow">New</button>
+            @foreach (var item in Master.DetailList)
+            {
+                <div class="row">
+                    <div class="col-md-3">
+                        <InputText class="form-control" id="name" palceholder="Name" @bind-Value="item.Name" />
+                        <ValidationMessage For="@(()=>item.Name)" style="color:green;" />
+                    </div>
+                    <div class="col-md-3">
+                        <InputText class="form-control" palceholder="Quantity" @bind-Value="item.Quantity" />
+                        <ValidationMessage For="@(()=>item.Quantity)" style="color:green;" />
+                    </div>
+                    <div class="col-md-3">
+                        <InputText class="form-control" palceholder="Rate" @bind-Value="item.Rate" />
+                        <ValidationMessage For="@(()=>item.Rate)" style="color:green;" />
+                    </div>
+                    <div class="col-md-3">
+                        <InputText class="form-control" palceholder="Total" @bind-Value="item.Total" />
+                        <ValidationMessage For="@(()=>item.Total)" style="color:green;" />
+                    </div>
+                </div>
+            }
+
+        </EditForm>*@
+
+
+    @*<div class="form-group">
+            <label class="control-label">Quantity</label>
+            <input class="form-control" @bind-value="item.Quantity" />
+            <ValidationMessage For="@(()=>item.Quantity)" style="color:green;" />
+
+            <span asp-validation-for="Detail.ProductId" class="text-danger"></span>
+        </div>*@

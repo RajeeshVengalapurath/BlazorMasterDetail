@@ -1,6 +1,6 @@
 @import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
-html, body {
+/*html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -177,11 +177,51 @@ app {
     }
 
     .sidebar .collapse {
-        /* Never collapse the sidebar for wide screens */
         display: block;
     }
 
     #MyValidationSummary > * {
         color: green !important;
     }
+}
+*/
+
+.my_container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    /*full screen*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    /*full screen end*/
+}
+
+.my_header {
+    padding: 10px;
+    background-color: aliceblue;
+
+    display:flex;
+    flex-direction:row;
+    grid-gap: 5px;
+}
+
+.my_detail {
+    background-color: antiquewhite;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.my_footer {
+    background-color: azure;
+    display: flex;
+    flex-direction: row;
+    grid-gap: 5px;
+
+    padding: 10px;
+}
+.my_control{
+    display:flex;
+    flex-direction:column;
 }
