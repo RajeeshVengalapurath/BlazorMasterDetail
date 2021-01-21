@@ -1,6 +1,7 @@
 ﻿@page "/"
 @inherits IndexBase
 
+@{ bool firstRow;}
 <EditForm Model="Master">
     <DataAnnotationsValidator />
     <ValidationSummary />
@@ -32,24 +33,40 @@
             </div>
         </div>
         <div class="my_detail">
+            @{
+                firstRow = true;
+            }
             @foreach (var item in Master.DetailList)
             {
-                <div class="my_control">
-                    <label>Quantity</label>
-                    <InputNumber @bind-Value="item.Quantity" />
-                    <ValidationMessage For="() => item.Quantity" />
+                <div class="my_detail_row">
+                    <div class="my_control">
+                        @if (firstRow)
+                        {
+                            <label>Quantity</label>
+                        }
+                        <InputNumber @bind-Value="item.Quantity" />
+                        <ValidationMessage For="() => item.Quantity" />
+                    </div>
+                    <div class="my_control">
+                        @if (firstRow)
+                        {
+                            <label>Rate</label>
+                        }
+                        <InputNumber @bind-Value="item.Rate" />
+                        <ValidationMessage For="() => item.Rate" />
+                    </div>
+                    <div class="my_control">
+                        @if (firstRow)
+                        {
+                            <label>Total</label>
+                        }
+                        <InputNumber @bind-Value="item.Total" />
+                        <ValidationMessage For="() => item.Total" />
+                    </div>
                 </div>
-                <div class="my_control">
-                    <label>Rate</label>
-                    <InputNumber @bind-Value="item.Rate" />
-                    <ValidationMessage For="() => item.Rate" />
-                </div>
-                <div class="my_control">
-                    <label>Total</label>
-                    <InputNumber @bind-Value="item.Total" />
-                    <ValidationMessage For="() => item.Total" />
-                </div>
+                firstRow = false;
             }
+            <button class="btn btn-primary" @onclick="Master.AddNewDetailRow">Add</button>
         </div>
         <div class="my_footer">
             <div class="my_control">
