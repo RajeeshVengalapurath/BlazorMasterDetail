@@ -185,7 +185,12 @@ app {
     }
 }
 */
-
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI';
+    font-size: 12px;
+    font-weight: normal;
+}
 .my_container {
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -199,33 +204,48 @@ app {
 }
 
 .my_header {
-    padding: 10px;
+    padding: 6px;
     background-color: aliceblue;
 
     display:flex;
     flex-direction:row;
-    grid-gap: 5px;
+    grid-gap: 6px;
 }
 
 .my_detail {
     background-color: white;
     overflow-y: scroll;
-    padding: 10px;
+    padding: 6px;
 }
 
 .my_footer {
     background-color: aliceblue;
     display: flex;
     flex-direction: row;
-    grid-gap: 5px;
-    padding: 10px;
+    grid-gap: 6px;
+    padding: 6px;
 }
 .my_control{
     display:flex;
     flex-direction:column;
 }
+    .my_control > input, select {
+        border: 1px solid #dadada;
+        border-radius: 6px;
+        height: 25px;
+    }
+        .my_control > input:focus {
+            outline: none;
+            border-color: #9ecaed;
+            box-shadow: 0 0 10px #9ecaed;
+        }
 .my_detail_row {
     display: flex;
     flex-direction: row;
-    grid-gap: 5px;
+    grid-gap: 6px;
+
+    margin-bottom: 6px;
+}
+#my_addButton{
+    margin-top:6px;
 }
