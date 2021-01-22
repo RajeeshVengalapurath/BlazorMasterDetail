@@ -18,6 +18,18 @@ namespace BlazorApp1.Pages
             base.OnInitialized();
 
             Master = new Master();
+            Master.Customers = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("Customer1" , 1),
+                new KeyValuePair<string, int>("Customer2" , 2),
+                new KeyValuePair<string, int>("Customer3" , 3)
+            };
+            Master.Products = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("Product1", 1),
+                new KeyValuePair<string, int>("Product2", 2),
+                new KeyValuePair<string, int>("Product3", 3)
+            };
             Master.AddNewDetailRow();
         }
 

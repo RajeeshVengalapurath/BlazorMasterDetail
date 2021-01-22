@@ -220,9 +220,14 @@ app {
 
 .my_footer {
     background-color: aliceblue;
-    display: flex;
-    flex-direction: row;
+    
+    /*display: flex;
+    flex-direction: row;*/
+
+    display:grid;
+    grid-template-columns: 1fr 65px 65px 65px;
     grid-gap: 6px;
+    
     padding: 6px;
 }
 .my_control{
@@ -240,12 +245,21 @@ app {
             box-shadow: 0 0 10px #9ecaed;
         }
 .my_detail_row {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 65px 65px 65px;
     grid-gap: 6px;
 
     margin-bottom: 6px;
 }
 #my_addButton{
     margin-top:6px;
+    width: 40px;
+    height: 25px;
+    padding:0;
+}
+.rightalign{
+    text-align:right;
+}
+#customer{
+    width: 270px;
 }

@@ -19,10 +19,11 @@
             </div>
             <div class="my_control">
                 <label>Customer</label>
-                <InputSelect @bind-Value="Master.CustomerId">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                <InputSelect @bind-Value="Master.CustomerId" id="customer">
+                    @foreach (var item in Master.Customers)
+                    {
+                        <option value="@item.Value">@item.Key</option>
+                    }
                 </InputSelect>@Master.CustomerId
                 <ValidationMessage For="() => Master.CustomerId" />
             </div>
@@ -42,9 +43,22 @@
                     <div class="my_control">
                         @if (firstRow)
                         {
+                            <label>Item</label>
+                        }
+                    <InputSelect @bind-Value="item.ProductId">
+                        @foreach (var item in Master.Products)
+                        {
+                            <option value="@item.Value">@item.Key</option>
+                        }
+                    </InputSelect>
+                        <ValidationMessage For="() => item.ProductId" />
+                    </div>
+                    <div class="my_control">
+                        @if (firstRow)
+                        {
                             <label>Quantity</label>
                         }
-                        <InputNumber @bind-Value="item.Quantity" />
+                        <InputNumber @bind-Value="item.Quantity" class="rightalign" />
                         <ValidationMessage For="() => item.Quantity" />
                     </div>
                     <div class="my_control">
@@ -52,7 +66,7 @@
                         {
                             <label>Rate</label>
                         }
-                        <InputNumber @bind-Value="item.Rate" />
+                        <InputNumber @bind-Value="item.Rate" class="rightalign" />
                         <ValidationMessage For="() => item.Rate" />
                     </div>
                     <div class="my_control">
@@ -60,7 +74,7 @@
                         {
                             <label>Total</label>
                         }
-                        <InputNumber @bind-Value="item.Total" />
+                        <InputNumber @bind-Value="item.Total" class="rightalign" disabled="disabled" />
                         <ValidationMessage For="() => item.Total" />
                     </div>
                 </div>
@@ -76,17 +90,17 @@
             </div>
             <div class="my_control">
                 <label>Net</label>
-                <InputNumber @bind-Value="Master.Net" disabled="disabled"></InputNumber>
+                <InputNumber @bind-Value="Master.Net" disabled="disabled" class="rightalign"></InputNumber>
                 <ValidationMessage For="() => Master.Net" />
             </div>
             <div class="my_control">
                 <label>Discount</label>
-                <InputNumber @bind-Value="Master.Discount"></InputNumber>
+                <InputNumber @bind-Value="Master.Discount" class="rightalign"></InputNumber>
                 <ValidationMessage For="() => Master.Discount" />
             </div>
             <div class="my_control">
                 <label>Total</label>
-                <InputNumber @bind-Value="Master.Total"></InputNumber>
+                <InputNumber @bind-Value="Master.Total" class="rightalign" disabled="disabled"></InputNumber>
                 <ValidationMessage For="() => Master.Total" />
             </div>
         </div>
