@@ -14,14 +14,17 @@ namespace BlazorApp1.Models
         decimal _rate = 0;
         decimal _total = 0;
 
-        public int ProductId { get { return _productId; } set { _productId = value; } }
+        public int ProductId { get { return _productId; } set { 
+                _productId = value;
+                OnPropertyChanged("product");
+            } }
         [GreaterThanDecimal(0)]
         public decimal Quantity { get { return _quantity; }
             set
             {
                 _quantity = value;
                 _total = _quantity * _rate;
-                OnPropertyChanged();
+                OnPropertyChanged("quantity");
             } }
         public decimal Rate
         {
@@ -30,16 +33,15 @@ namespace BlazorApp1.Models
             {
                 _rate = value;
                 _total = _quantity * _rate;
-                OnPropertyChanged();
+                OnPropertyChanged("rate");
             }
         }
         public decimal Total { get { return _total; } set { _total = value; } }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged()
+        protected void OnPropertyChanged(string name)
         {
-            //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-            PropertyChanged?.Invoke(this, null);
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
     }

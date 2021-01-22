@@ -1,6 +1,7 @@
 ﻿using BlazorApp1.CustomValidators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +27,7 @@ namespace BlazorApp1.Models
                 CalculateTotal();
             } }
 
+        public event PropertyChangedEventHandler DetailPropertyChanged;
         public void AddNewDetailRow()
         {
             var detail = new Detail();
@@ -37,10 +39,11 @@ namespace BlazorApp1.Models
         {
             _net = DetailList.Sum(e => e.Total);
             CalculateTotal();
+            DetailPropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(e.PropertyName)); //Handled by razor file
         }
         void CalculateTotal()
         {
             Total = _net - Discount;
-        }
+        }        
     }
 }

@@ -10,6 +10,7 @@ namespace BlazorApp1.Pages
 {
     public partial class IndexBase : ComponentBase
     {
+        public string Test { get; set; }
         public Master Master { get; set; }
         public InputText nameControl { get; set; }
 
@@ -31,6 +32,20 @@ namespace BlazorApp1.Pages
                 new KeyValuePair<string, int>("Product3", 3)
             };
             Master.AddNewDetailRow();
+            Master.DetailPropertyChanged += Master_DetailPropertyChanged;
+        }
+
+        private void Master_DetailPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            /*Get detail model on value change: Method2
+            Can be used for on productId change on a particular row with detail.rowno = x
+            Can avoid splitting the inputselect binding to free up OnChange event*/
+
+            Detail detail = (Detail)sender;
+            //if (e.PropertyName == "product")
+            //    Test = detail.ProductId + " " + detail.Total;
+            //else
+            //    Test = "";
         }
 
         void HandleValidSubmit() { }
@@ -38,5 +53,11 @@ namespace BlazorApp1.Pages
         {
             Master.AddNewDetailRow();
         }
+        /*Get detail model on value change: Method1
+        public void OnProductChange(int value, Detail detail)
+        {
+            detail.ProductId = value;
+            Test = detail.ProductId.ToString() + " " + detail.Total.ToString();
+        }*/
     }
 }

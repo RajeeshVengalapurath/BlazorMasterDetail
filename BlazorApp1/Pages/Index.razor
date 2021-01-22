@@ -45,12 +45,22 @@
                         {
                             <label>Item</label>
                         }
-                    <InputSelect @bind-Value="item.ProductId">
-                        @foreach (var item in Master.Products)
-                        {
-                            <option value="@item.Value">@item.Key</option>
-                        }
-                    </InputSelect>
+
+                        @*Get detail model on value change: Method1
+                        <InputSelect ValueExpression="@(()=>item.ProductId)" Value="@item.ProductId" ValueChanged="@((int value) => OnProductChange(value, item))">
+                            @foreach (var item in Master.Products)
+                                {
+                                <option value="@item.Value">@item.Key</option>
+                                }
+                        </InputSelect>*@
+
+                        <InputSelect @bind-Value="item.ProductId">
+                            @foreach (var item in Master.Products)
+                                {
+                                <option value="@item.Value">@item.Key</option>
+                                }
+                        </InputSelect>
+                        @Test
                         <ValidationMessage For="() => item.ProductId" />
                     </div>
                     <div class="my_control">
