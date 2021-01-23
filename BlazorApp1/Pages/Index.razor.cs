@@ -25,12 +25,7 @@ namespace BlazorApp1.Pages
                 new KeyValuePair<string, int>("Customer2" , 2),
                 new KeyValuePair<string, int>("Customer3" , 3)
             };
-            Master.Products = new List<KeyValuePair<string, int>>
-            {
-                new KeyValuePair<string, int>("Product1", 1),
-                new KeyValuePair<string, int>("Product2", 2),
-                new KeyValuePair<string, int>("Product3", 3)
-            };
+            Master.Products = BlazorApp1.Data.Product.GetAllProducts().Select(e => new KeyValuePair<string, int>(e.Name, e.Id)).ToList();
             Master.AddNewDetailRow();
             Master.DetailPropertyChanged += Master_DetailPropertyChanged;
         }
@@ -42,10 +37,8 @@ namespace BlazorApp1.Pages
             Can avoid splitting the inputselect binding to free up OnChange event*/
 
             Detail detail = (Detail)sender;
-            //if (e.PropertyName == "product")
-            //    Test = detail.ProductId + " " + detail.Total;
-            //else
-            //    Test = "";
+            if (e.PropertyName == "product")
+                detail.Rate = Data.Product.GetRate(detail.ProductId);
         }
 
         void HandleValidSubmit() { }
